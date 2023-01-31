@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hyper Shop</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<style type="text/css">
+    body {
+        margin-top: 20px;
+        background-color: #f4f7f6;
+    }
+
+    .c_review {
+        margin-bottom: 0
+    }
+
+    .c_review li {
+        margin-bottom: 16px;
+        padding-bottom: 13px;
+        border-bottom: 1px solid #e8e8e8
+    }
+
+    .c_review li:last-child {
+        margin: 0;
+        border: none
+    }
+
+    .c_review .avatar {
+        float: left;
+        width: 80px
+    }
+
+    .c_review .comment-action {
+        float: left;
+        width: calc(100% - 80px)
+    }
+
+    .c_review .comment-action .c_name {
+        margin: 0
+    }
+
+    .c_review .comment-action p {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 95%;
+        display: block
+    }
+
+    .product_item:hover .cp_img {
+        top: -40px
+    }
+
+    .product_item:hover .cp_img img {
+        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22)
+    }
+
+    .product_item:hover .cp_img .hover {
+        display: block
+    }
+
+    .product_item .cp_img {
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        transform: translate(-50%);
+        -webkit-transform: translate(-50%);
+        -ms-transform: translate(-50%);
+        -moz-transform: translate(-50%);
+        -o-transform: translate(-50%);
+        -khtml-transform: translate(-50%);
+        width: 100%;
+        padding: 15px;
+        transition: all 0.2s ease-in-out
+    }
+
+    .product_item .cp_img img {
+        transition: all 0.2s ease-in-out;
+        border-radius: 6px
+    }
+
+    .product_item .cp_img .hover {
+        display: none;
+        text-align: center;
+        margin-top: 10px
+    }
+
+    .product_item .product_details {
+        padding-top: 110%;
+        text-align: center
+    }
+
+    .product_item .product_details h5 {
+        margin-bottom: 5px
+    }
+
+    .product_item .product_details h5 a {
+        font-size: 16px;
+        color: #444
+    }
+
+    .product_item .product_details h5 a:hover {
+        text-decoration: none
+    }
+
+    .product_item .product_details .product_price {
+        margin: 0
+    }
+
+    .product_item .product_details .product_price li {
+        display: inline-block;
+        padding: 0 10px
+    }
+
+    .product_item .product_details .product_price .new_price {
+        font-weight: 600;
+        color: #ff4136
+    }
+
+    .product_item_list table tr td {
+        vertical-align: middle
+    }
+
+    .product_item_list table tr td h5 {
+        font-size: 15px;
+        margin: 0
+    }
+
+    .product_item_list table tr td .btn {
+        box-shadow: none !important
+    }
+
+    .product-order-list table tr th:last-child {
+        width: 145px
+    }
+
+    .preview {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+    .preview .preview-pic {
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1
+    }
+
+    .preview .preview-thumbnail.nav-tabs {
+        margin-top: 15px;
+        font-size: 0
+    }
+
+    .preview .preview-thumbnail.nav-tabs li {
+        width: 20%;
+        display: inline-block
+    }
+
+    .preview .preview-thumbnail.nav-tabs li nav-link img {
+        max-width: 100%;
+        display: block
+    }
+
+    .preview .preview-thumbnail.nav-tabs li a {
+        padding: 0;
+        margin: 2px;
+        border-radius: 0 !important;
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important
+    }
+
+    .preview .preview-thumbnail.nav-tabs li:last-of-type {
+        margin-right: 0
+    }
+
+    .preview .tab-content {
+        overflow: hidden
+    }
+
+    .preview .tab-content img {
+        width: 100%;
+        -webkit-animation-name: opacity;
+        animation-name: opacity;
+        -webkit-animation-duration: .3s;
+        animation-duration: .3s
+    }
+
+    .details {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+    .details .rating .stars {
+        display: inline-block
+    }
+
+    .details .sizes .size {
+        margin-right: 10px
+    }
+
+    .details .sizes .size:first-of-type {
+        margin-left: 40px
+    }
+
+    .details .colors .color {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+        height: 2em;
+        width: 2em;
+        border-radius: 2px
+    }
+
+    .details .colors .color:first-of-type {
+        margin-left: 20px
+    }
+
+    .details .colors .not-available {
+        text-align: center;
+        line-height: 2em
+    }
+
+    .details .colors .not-available:before {
+        font-family: Material-Design-Iconic-Font;
+        content: "\f136";
+        color: #fff
+    }
+
+    @media screen and (max-width: 996px) {
+        .preview {
+            margin-bottom: 20px
+        }
+    }
+
+    @-webkit-keyframes opacity {
+        0% {
+            opacity: 0;
+            -webkit-transform: scale(3);
+            transform: scale(3)
+        }
+
+        100% {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1)
+        }
+    }
+
+    @keyframes opacity {
+        0% {
+            opacity: 0;
+            -webkit-transform: scale(3);
+            transform: scale(3)
+        }
+
+        100% {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1)
+        }
+    }
+
+    .cart-page .cart-table tr th:last-child {
+        width: 145px
+    }
+
+    .cart-table .quantity-grp {
+        width: 120px
+    }
+
+    .cart-table .quantity-grp .input-group {
+        margin-bottom: 0
+    }
+
+    .cart-table .quantity-grp .input-group-addon {
+        padding: 0 !important;
+        text-align: center;
+        background-color: #1ab1e3
+    }
+
+    .cart-table .quantity-grp .input-group-addon a {
+        display: block;
+        padding: 8px 10px 10px;
+        color: #fff
+    }
+
+    .cart-table .quantity-grp .input-group-addon a i {
+        vertical-align: middle
+    }
+
+    .cart-table .quantity-grp .form-control {
+        background-color: #fff
+    }
+
+    .cart-table .quantity-grp .form-control+.input-group-addon {
+        background-color: #1ab1e3
+    }
+
+    .ec-checkout .wizard .content .form-group .btn-group.bootstrap-select.form-control {
+        padding: 0
+    }
+
+    .ec-checkout .wizard .content .form-group .btn-group.bootstrap-select.form-control .btn-round.btn-simple {
+        padding-top: 12px;
+        padding-bottom: 12px
+    }
+
+    .ec-checkout .wizard .content ul.card-type {
+        font-size: 0
+    }
+
+    .ec-checkout .wizard .content ul.card-type li {
+        display: inline-block;
+        margin-right: 10px
+    }
+
+    .card {
+        background: #fff;
+        margin-bottom: 30px;
+        transition: .5s;
+        border: 0;
+        border-radius: .55rem;
+        position: relative;
+        width: 100%;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .card .body {
+        font-size: 14px;
+        color: #424242;
+        padding: 20px;
+        font-weight: 400;
+    }
+</style>
+
+<body>
+    <!-- Header Ínicio nicio -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+                            <p>10% OFF NA PRIMEIRA COMPRA</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                                <a href="./signup.html">Cadastre-se</a>
+                                <a href="./login.html">Entre</a>
+                                <a href="https://www.instagram.com/mscomprp/">Dúvidas</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo">
+                        <a href="./index.html"><img src="./imagens/logo/logo_extenso.png" alt="" width="50%"></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li class="active"><a href="./index.html">Início</a></li>
+                            <li><a href="#">Depertamentos</a>
+                                <ul class="dropdown">
+                                    <li><a href="#">Hardware</a></li>
+                                    <li><a href="#">Periféricos</a></li>
+                                    <li><a href="#">Computadores</a></li>
+                                    <li><a href="#">Celulares</a></li>
+                                    <li><a href="#">Automação Residencial</a></li>
+                                </ul>
+                            <li><a href="#">PC Gamer</a></li>
+                            <li><a href="#">Home Office</a></li>
+
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__nav__option">
+                        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+                        <a href="#"><img src="img/icon/heart.png" alt=""></a>
+                        <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                        <div class="price">R$ 0.00</div>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>
+    <!-- Header Fim -->
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Produtos</h4>
+                        <div class="breadcrumb__links">
+                            <a href="./index.html">Pagina Produtos</a>
+                            <span>Shop</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Shop Section Begin -->
+    <section class="shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="shop__sidebar">
+                        <div class="shop__sidebar__search">
+                            <form action="#">
+                                <input type="text" placeholder="Search...">
+                                <button type="submit"><span class="icon_search"></span></button>
+                            </form>
+                        </div>
+                        <div class="shop__sidebar__accordion">
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseOne">Categorias</a>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__categories">
+                                                <ul class="nice-scroll">
+                                                    <li><a href="#">Gabinetes (5)</a></li>
+                                                    <li><a href="#">Teclados (11)</a></li>
+                                                    <li><a href="#">Mouses (14)</a></li>
+                                                    <li><a href="#">Consoles (6)</a></li>
+                                                    <li><a href="#">Monitor (21)</a></li>
+                                                    <li><a href="#">Placa De Video (16)</a></li>
+                                                    <li><a href="#">Processador (6)</a></li>
+                                                    <li><a href="#">Placa Mãe (8)</a></li>
+                                                    <li><a href="#">Memoria RAM (12)</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseTwo">Marcas</a>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__brand">
+                                                <ul>
+                                                    <li><a href="#">Intel</a></li>
+                                                    <li><a href="#">AMD</a></li>
+                                                    <li><a href="#">Asus</a></li>
+                                                    <li><a href="#">Razer</a></li>
+                                                    <li><a href="#">Xpg</a></li>
+                                                    <li><a href="#">Sony</a></li>
+                                                    <li><a href="#">Microsoft</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseThree">Filtro De Preço</a>
+                                    </div>
+                                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__price">
+                                                <ul>
+                                                    <li><a href="#">$0.00 - $50.00</a></li>
+                                                    <li><a href="#">$50.00 - $100.00</a></li>
+                                                    <li><a href="#">$100.00 - $150.00</a></li>
+                                                    <li><a href="#">$150.00 - $200.00</a></li>
+                                                    <li><a href="#">$200.00 - $250.00</a></li>
+                                                    <li><a href="#">250.00+</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseSix">Tags</a>
+                                    </div>
+                                    <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__tags">
+                                                <a href="#">Produtos</a>
+                                                <a href="#">Mouse</a>
+                                                <a href="#">Mecanico</a>
+                                                <a href="#">Gamer</a>
+                                                <a href="#">144hz</a>
+                                                <a href="#">Fps</a>
+                                                <a href="#">Acessorios</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="shop__product__option">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="shop__product__option__left">
+                                    <p>Mostrando 1–12 De 126 Resultados</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="shop__product__option__right">
+                                    <p>Classificar Por:</p>
+                                    <select>
+                                        <option value="">Mais Vendidos</option>
+                                        <option value="">Mais Procurados</option>
+                                        <option value="">Promoções</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="snippetContent">
+                        <link rel="stylesheet"
+                            href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css">
+                        <script
+                            src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
+                        <link rel="stylesheet"
+                            href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+                        <div class="container">
+                            <div class="row clearfix">
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <div class="card product_item">
+                                        <div class="body">
+                                            <div class="cp_img"> <img
+                                                    src="/prototipo/imagens/produtos_Shop/produto1.jpg" alt="Product"
+                                                    class="img-fluid">
+                                                <div class="hover"> <a href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-plus"></i></a> <a
+                                                        href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-shopping-cart"></i></a></div>
+                                            </div>
+                                            <div class="product_details">
+                                                <h5><a href="ec-product-detail.html">Processador Intel Core i5</a></h5>
+                                                <ul class="product_price list-unstyled">
+                                                    <li class="old_price">R$1799.00</li>
+                                                    <li class="new_price">R$1079.00</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <div class="card product_item">
+                                        <div class="body">
+                                            <div class="cp_img"> <img
+                                                    src="/prototipo/imagens/produtos_Shop/produto2.jpg" alt="Product"
+                                                    class="img-fluid">
+                                                <div class="hover"> <a href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-plus"></i></a> <a
+                                                        href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-shopping-cart"></i></a></div>
+                                            </div>
+                                            <div class="product_details">
+                                                <h5><a href="ec-product-detail.html">Processador AMD Ryzen 5</a></h5>
+                                                <ul class="product_price list-unstyled">
+                                                    <li class="old_price">R$2299.00</li>
+                                                    <li class="new_price">R$1699.00</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <div class="card product_item">
+                                        <div class="body">
+                                            <div class="cp_img"> <img
+                                                    src="/prototipo/imagens/produtos_Shop/produto3.jpg" alt="Product"
+                                                    class="img-fluid">
+                                                <div class="hover"> <a href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-plus"></i></a> <a
+                                                        href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-shopping-cart"></i></a></div>
+                                            </div>
+                                            <div class="product_details">
+                                                <h5><a href="ec-product-detail.html">Placa de Vídeo Zotac NVIDIA GeForce
+                                                        RTX 2060</a></h5>
+                                                <ul class="product_price list-unstyled">
+                                                    <li class="old_price">R$4699.00</li>
+                                                    <li class="new_price">R$3699.00</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <div class="card product_item">
+                                        <div class="body">
+                                            <div class="cp_img"> <img
+                                                    src="/prototipo/imagens/produtos_Shop/produto4.jpg" alt="Product"
+                                                    class="img-fluid">
+                                                <div class="hover"> <a href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-plus"></i></a> <a
+                                                        href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-shopping-cart"></i></a></div>
+                                            </div>
+                                            <div class="product_details">
+                                                <h5><a href="ec-product-detail.html">Placa de Vídeo Gigabyte NVIDIA
+                                                        GeForce RTX 2060</a></h5>
+                                                <ul class="product_price list-unstyled">
+                                                    <li class="old_price">R$3799.00</li>
+                                                    <li class="new_price">R$3199.00</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <div class="card product_item">
+                                        <div class="body">
+                                            <div class="cp_img"> <img
+                                                    src="/prototipo/imagens/produtos_Shop/produto5.jpg" alt="Product"
+                                                    class="img-fluid">
+                                                <div class="hover"> <a href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-plus"></i></a> <a
+                                                        href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-shopping-cart"></i></a></div>
+                                            </div>
+                                            <div class="product_details">
+                                                <h5><a href="ec-product-detail.html">Placa-mãe Gigabyte Aorus B450 Aorus
+                                                        M, AMD</a></h5>
+                                                <ul class="product_price list-unstyled">
+                                                    <li class="old_price">R$899.00</li>
+                                                    <li class="new_price">R$699.00</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <div class="card product_item">
+                                        <div class="body">
+                                            <div class="cp_img"> <img
+                                                    src="/prototipo/imagens/produtos_Shop/produto6.jpg" alt="Product"
+                                                    class="img-fluid">
+                                                <div class="hover"> <a href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-plus"></i></a> <a
+                                                        href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-shopping-cart"></i></a></div>
+                                            </div>
+                                            <div class="product_details">
+                                                <h5><a href="ec-product-detail.html">Placa-mãe Asus ROG STRIX Z690-A
+                                                        GAMING Intel</a></h5>
+                                                <ul class="product_price list-unstyled">
+                                                    <li class="old_price">R$3899.00</li>
+                                                    <li class="new_price">R$3299.00</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <div class="card product_item">
+                                        <div class="body">
+                                            <div class="cp_img"> <img
+                                                    src="/prototipo/imagens/produtos_Shop/produto7.jpg" alt="Product"
+                                                    class="img-fluid">
+                                                <div class="hover"> <a href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-plus"></i></a> <a
+                                                        href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-shopping-cart"></i></a></div>
+                                            </div>
+                                            <div class="product_details">
+                                                <h5><a href="ec-product-detail.html">Gabinete Gamer Bluecase MID
+                                                        Tower</a></h5>
+                                                <ul class="product_price list-unstyled">
+                                                    <li class="old_price">R$429.00</li>
+                                                    <li class="new_price">R$329.00</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <div class="card product_item">
+                                        <div class="body">
+                                            <div class="cp_img"> <img
+                                                    src="/prototipo/imagens/produtos_Shop/produto8.jpg" alt="Product"
+                                                    class="img-fluid">
+                                                <div class="hover"> <a href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-plus"></i></a> <a
+                                                        href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-shopping-cart"></i></a></div>
+                                            </div>
+                                            <div class="product_details">
+                                                <h5><a href="./shop-details.html">Teclado Mecânico Gamer HyperX Alloy
+                                                        Elite 2 RGB</a></h5>
+                                                <ul class="product_price list-unstyled">
+                                                    <li class="old_price">R$1333.00</li>
+                                                    <li class="new_price">R$699.00</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <div class="card product_item">
+                                        <div class="body">
+                                            <div class="cp_img"> <img
+                                                    src="/prototipo/imagens/produtos_Shop/produto9.jpg" alt="Product"
+                                                    class="img-fluid">
+                                                <div class="hover"> <a href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-plus"></i></a> <a
+                                                        href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-shopping-cart"></i></a></div>
+                                            </div>
+                                            <div class="product_details">
+                                                <h5><a href="ec-product-detail.html">Xbox Series X </a></h5>
+                                                <ul class="product_price list-unstyled">
+                                                    <li class="old_price">R$6000.00</li>
+                                                    <li class="new_price">R$5499.00</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <div class="card product_item">
+                                        <div class="body">
+                                            <div class="cp_img"> <img
+                                                    src="/prototipo/imagens/produtos_Shop/produto10.jpg" alt="Product"
+                                                    class="img-fluid">
+                                                <div class="hover"> <a href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-plus"></i></a> <a
+                                                        href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-shopping-cart"></i></a></div>
+                                            </div>
+                                            <div class="product_details">
+                                                <h5><a href="ec-product-detail.html">Playstation 5</a></h5>
+                                                <ul class="product_price list-unstyled">
+                                                    <li class="old_price">R$5000.00</li>
+                                                    <li class="new_price">R$4699.00</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <div class="card product_item">
+                                        <div class="body">
+                                            <div class="cp_img"> <img
+                                                    src="/prototipo/imagens/produtos_Shop/produto12.jpg" alt="Product"
+                                                    class="img-fluid">
+                                                <div class="hover"> <a href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-plus"></i></a> <a
+                                                        href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-shopping-cart"></i></a></div>
+                                            </div>
+                                            <div class="product_details">
+                                                <h5><a href="ec-product-detail.html">Controle Sem fio PS5 DualSense</a>
+                                                </h5>
+                                                <ul class="product_price list-unstyled">
+                                                    <li class="old_price">R$429.00</li>
+                                                    <li class="new_price">R$380.00</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-12">
+                                    <div class="card product_item">
+                                        <div class="body">
+                                            <div class="cp_img"> <img
+                                                    src="/prototipo/imagens/produtos_Shop/produto11.jpg" alt="Product"
+                                                    class="img-fluid">
+                                                <div class="hover"> <a href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-plus"></i></a> <a
+                                                        href="javascript:void(0);"
+                                                        class="btn btn-primary btn-sm waves-effect"><i
+                                                            class="zmdi zmdi-shopping-cart"></i></a></div>
+                                            </div>
+                                            <div class="product_details">
+                                                <h5><a href="ec-product-detail.html">Controle Sem Fio Black PS5</a></h5>
+                                                <ul class="product_price list-unstyled">
+                                                    <li class="old_price">R$449.00</li>
+                                                    <li class="new_price">R$400.00</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <script type="text/javascript"></script>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product__pagination">
+                                <a class="active" href="#">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <span>...</span>
+                                <a href="#">9</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="imagens/logo/logo_extenso.png" alt=""></a>
+                        </div>
+                        <p>O cliente está no centro do nosso modelo de negócio.</p>
+                        <a href="#"><img src="img/payment.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Loja</h6>
+                        <ul>
+                            <li><a href="#">Gamer Store</a></li>
+                            <li><a href="#">Acessórios</a></li>
+                            <li><a href="#">Sale</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="#">Contate-Nos</a></li>
+                            <li><a href="#">Metodos De Pagamentos</a></li>
+                            <li><a href="#">Entrega</a></li>
+                            <li><a href="#">Devoluções e trocas</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Novidades</h6>
+                        <div class="footer__newslatter">
+                            <p>Seja o primeiro a saber sobre as novidades, vendas e promoções!</p>
+                            <form action="#">
+                                <input type="text" placeholder="Seu Email">
+                                <button type="submit"><span class="icon_mail_alt"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p>© 2022 Hyper Shop, By. $imão & Mutut@</p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+
+</body>
+
+</html>

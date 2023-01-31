@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block conteudo %}
+
+<section class="vh-100" style="background-color: #eee;">
+    <div class="container py-5 h-50">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+                <div class="card rounded-3">
+                    <div class="card-body p-4">
+
+                        <h4 class="text-center my-3 pb-3">Novo Endereço</h4>
+
+                        <form id="register-form" name="register-form" action="" method="post">
+                            {% csrf_token %}
+                            
+                            {{ form|crispy }}
+                            
+                            <h4 class="text-center"><a href="{% url 'endereco' %}"><button class="btn btn-warning">Voltar</button></a> <button type="submit" class="btn btn-success">Salvar</button></h4>
+                            
+                
+                        </form>                       
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

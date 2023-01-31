@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+{% load static %}
+<!-- Banner Section Begin -->
+<section class="banner spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 offset-lg-4">
+                <div class="banner__item">
+                    <div class="banner__item__pic">
+                        <img src="{% static "/imagens/produtos/gamer-1.jpg" %}" alt="">
+                    </div>
+                    <div class="banner__item__text">
+                        <h2>Coleção Gamer</h2>
+                        <a href="#">Compre agora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="banner__item banner__item--middle">
+                    <div class="banner__item__pic">
+                        <img src="{% static "/imagens/produtos/home-1.jpg" %}" width="90%" alt="">
+                    </div>
+                    <div class="banner__item__text">
+                        <h2>Home Office</h2>
+                        <a href="#">Compre agora</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="banner__item banner__item--last">
+                    <div class="banner__item__pic">
+                        <img src="{% static "/imagens/produtos/assistencia-1.jpg" %}" alt="">
+                    </div>
+                    <div class="banner__item__text">
+                        <h2>Serviços de informática</h2>
+                        <a href="#">Solicite agora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner Section End -->
+
+
+{% if produto_list %}
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for produto in produto_list %}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="...">
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{ produto.nome_produto }}</h5>
+                                    <!-- Product price-->
+                                    {{ produto.valor_unitario }} - {{ produto.valor_unitario  }}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Adicionar ao carrinho</a></div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% else %}
+    <p>Não existem produtos cadastrados no sistema.</p>
+{% endif %}
+
+{% endblock %}

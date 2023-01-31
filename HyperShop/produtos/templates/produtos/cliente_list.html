@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<section class="vh-100" style="background-color: #eee;">
+    <div class="container py-5 h-50">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+                <div class="card rounded-3">
+                    <div class="card-body p-4">
+                        
+                        <h4 class="text-center my-3 pb-3">Endereços</h4>
+                        {% if cliente_list %}
+                        <table class="table mb-4">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Rua</th>
+                                    <th scope="col">Número</th>
+                                    <th scope="col">Telefone</th>
+                                    <th scope="col"><a href="{% url 'cadastro_endereco' %}"><button class="btn btn-success btn-sm">Novo</button></a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cliente in cliente_list %}
+                                <tr>
+                                    <td>{{ cliente.endereco }}</td>
+                                    <td>{{ cliente.numero_residencia }}</td>
+                                    <td>{{ cliente.telefone }}</td>
+                                    <td><a href="{% url 'editar_endereco' cliente.id %}"><button class="btn btn-warning btn-sm">Editar</button></td></a>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <h5 class="text-center">Não existem endereços cadastrados no sistema.</h5>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
